@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {StyleSheet, View, TextInput, Text, ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from '../styles/global';
@@ -81,19 +81,13 @@ const overrides = StyleSheet.create({
 
     },
     textInputContainer: {
-        backgroundColor: 'hsl(210, 40%, 90%)',
+        backgroundColor: 'transparent',
         borderRadius: 10,
         paddingLeft: 16,
         paddingRight: 16,
         paddingTop: 32,
         paddingBottom: 32,
 
-        shadowColor: "#000000",
-        shadowOpacity: 0.2,
-        shadowRadius: 1,
-        shadowOffset: {
-            height: 2
-        }
     },
     navigationBar: {
         justifyContent: 'center',

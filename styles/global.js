@@ -30,6 +30,27 @@ export default styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'stretch'
     },
+    errorView:{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        paddingTop: 30,
+        paddingBottom: 15,
+        paddingRight: 15,
+        paddingLeft: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'tomato',
+        zIndex: 3,
+    },
+    errorViewText: {
+        color: 'white',
+        fontSize: 15,
+        textAlign: 'center',
+        lineHeight: 1.4 * 15
+    },
     buttonSend: {
         backgroundColor: 'rgb(36,121,227)',
         marginLeft: 0,
@@ -39,7 +60,7 @@ export default styles = StyleSheet.create({
     smallHeader: {
         lineHeight: 30,
         marginBottom: 0,
-        fontSize: 14,
+        fontSize: 12,
         textAlign: 'center',
 
     },

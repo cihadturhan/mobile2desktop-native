@@ -50,8 +50,6 @@
 		D3651EE2F3454498943A9399 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9CBD3EB6DC4AE6BBCF61AE /* libRNVectorIcons.a */; };
 		DA45A53098654966BCB636CF /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0B1F8B846846DA9DCF4876 /* libRNDeviceInfo.a */; };
 		DEB8736FBFA94781A76517ED /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A761EA4F59584C4B83D73C6C /* Foundation.ttf */; };
-		D1A663C230DC486796DC7F26 /* libToolTipMenu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C01F5C3924D89A5F95EEE /* libToolTipMenu.a */; };
-		1638610FC5844FBEAC74E0FA /* libRNOverlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AD1B56A53E4360992094ED /* libRNOverlay.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,10 +308,6 @@
 		AFB796DECB9B4D6DBCC5822F /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		BBE6977BFCCD43408F736BAD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		FA5F481415C94E629BD68C9E /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		B000C543BB364467ABCAB029 /* ToolTipMenu.xcodeproj */ = {isa = PBXFileReference; name = "ToolTipMenu.xcodeproj"; path = "../node_modules/react-native-tooltip/ToolTipMenu.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		F32C01F5C3924D89A5F95EEE /* libToolTipMenu.a */ = {isa = PBXFileReference; name = "libToolTipMenu.a"; path = "libToolTipMenu.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		0CC95E5D28B04419994D4C09 /* RNOverlay.xcodeproj */ = {isa = PBXFileReference; name = "RNOverlay.xcodeproj"; path = "../node_modules/react-native-overlay/RNOverlay.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C3AD1B56A53E4360992094ED /* libRNOverlay.a */ = {isa = PBXFileReference; name = "libRNOverlay.a"; path = "libRNOverlay.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,8 +339,6 @@
 				53070AC5D46B45839DBB3F38 /* libRealmReact.a in Frameworks */,
 				4FFD4E83EC304FB58E40EB8D /* libc++.tbd in Frameworks */,
 				A7CBA5405C8244D9B0F36172 /* libz.tbd in Frameworks */,
-				D1A663C230DC486796DC7F26 /* libToolTipMenu.a in Frameworks */,
-				1638610FC5844FBEAC74E0FA /* libRNOverlay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,8 +517,6 @@
 				AFB796DECB9B4D6DBCC5822F /* RNVectorIcons.xcodeproj */,
 				A377029346B44ABDB3693BEC /* RNDeviceInfo.xcodeproj */,
 				1B210EF6C333447D8445B311 /* RealmReact.xcodeproj */,
-				B000C543BB364467ABCAB029 /* ToolTipMenu.xcodeproj */,
-				0CC95E5D28B04419994D4C09 /* RNOverlay.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -966,6 +956,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B750D1781ED9C70600CC0F3B /* ToolTipMenuTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ToolTipMenuTests.xctest;
+			remoteRef = B750D1771ED9C70600CC0F3B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B7E111491E9904330059A430 /* libRealmReact.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1141,19 +1138,12 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/realm/src/**",
-					"$(SRCROOT)/../node_modules/react-native-tooltip/ToolTipMenu",
-					"$(SRCROOT)/../node_modules/react-native-overlay",
 				);
 				INFOPLIST_FILE = mobile2desktopTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1175,19 +1165,12 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/realm/src/**",
-					"$(SRCROOT)/../node_modules/react-native-tooltip/ToolTipMenu",
-					"$(SRCROOT)/../node_modules/react-native-overlay",
 				);
 				INFOPLIST_FILE = mobile2desktopTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1210,8 +1193,6 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/realm/src/**",
-					"$(SRCROOT)/../node_modules/react-native-tooltip/ToolTipMenu",
-					"$(SRCROOT)/../node_modules/react-native-overlay",
 				);
 				INFOPLIST_FILE = mobile2desktop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1238,8 +1219,6 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/realm/src/**",
-					"$(SRCROOT)/../node_modules/react-native-tooltip/ToolTipMenu",
-					"$(SRCROOT)/../node_modules/react-native-overlay",
 				);
 				INFOPLIST_FILE = mobile2desktop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1273,18 +1252,11 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/realm/src/**",
-					"$(SRCROOT)/../node_modules/react-native-tooltip/ToolTipMenu",
-					"$(SRCROOT)/../node_modules/react-native-overlay",
 				);
 				INFOPLIST_FILE = "mobile2desktop-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1316,18 +1288,11 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/realm/src/**",
-					"$(SRCROOT)/../node_modules/react-native-tooltip/ToolTipMenu",
-					"$(SRCROOT)/../node_modules/react-native-overlay",
 				);
 				INFOPLIST_FILE = "mobile2desktop-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1357,11 +1322,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.mobile2desktop-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1387,11 +1347,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.mobile2desktop-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

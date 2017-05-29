@@ -85,7 +85,7 @@ export default class Mobile2DesktopSocketHandler extends Component {
         });
 
         this.io.on(constants.MESSAGE_ERROR, (msg)=> {
-            console.log('message error', msg);
+            this.showError(msg);
         });
 
         this.io.on(constants.REGISTER_SUCCESS, (UserToken) => {
@@ -106,7 +106,7 @@ export default class Mobile2DesktopSocketHandler extends Component {
         });
 
         this.io.on(constants.REGISTER_ERROR, (msg) => {
-            console.log('register error', msg);
+            this.showError(msg);
             this.setState({
                 registered: false,
                 resource: iconError
@@ -125,7 +125,7 @@ export default class Mobile2DesktopSocketHandler extends Component {
         });
 
         this.io.on(constants.JOIN_ERROR, (msg) => {
-            console.log('join error', msg);
+            this.showError(msg);
             this.setState({
                 joined: false,
                 resource: iconError
@@ -148,7 +148,7 @@ export default class Mobile2DesktopSocketHandler extends Component {
     }
 
     register() {
-        if (this.state.userCredentials) {
+        if (this.state.userCredentials.UserId.trim() && this.state.userCredentials.password.trim()) {
             this.io.emit(constants.REGISTER, this.state.userCredentials);
             console.log('register!');
         } else {
@@ -157,9 +157,14 @@ export default class Mobile2DesktopSocketHandler extends Component {
 
     }
 
-    onRegister(UserToken) {}
+    onRegister(UserToken) {
+        this.state.sessionCredentials.UserToken = UserToken;
+        this.setState(this.state);
+    }
 
     onJoin() {}
+
+    showError(){}
 
     join() {
         if (this.state.sessionCredentials) {

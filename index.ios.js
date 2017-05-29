@@ -39,6 +39,9 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
     constructor(props) {
         super(props);
+        UserInfo.remove(UserInfo.USER_TOKEN);
+        UserInfo.remove(UserInfo.USER_ID);
+
         this.state.sessionCredentials = {
             deviceUuid,
             deviceName,
@@ -55,6 +58,7 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
         this.state.contentHeight = 0;
         this.state.isToastVisible = false;
+        this.state.error = {};
 
         this._onPasswordChange = this._onPasswordChange.bind(this);
         this._onUserIdChange = this._onUserIdChange.bind(this);
@@ -62,6 +66,7 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
         this._getClipboardContent = this._getClipboardContent.bind(this);
         this._onCopy = this._onCopy.bind(this);
         this.checkFieldsValid = this.checkFieldsValid.bind(this);
+        this.register = this.register.bind(this);
     }
 
     /* Overrides */
@@ -75,6 +80,19 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
     logout() {
         super.logout();
         UserInfo.remove(UserInfo.USER_TOKEN);
+    }
+
+    showError(errorMessage){
+        let error = {
+            enabled: true,
+            message: errorMessage
+        };
+
+        this.setState({error});
+
+        setTimeout(()=> {
+            this.setState({error: {}})
+        }, 3000)
     }
 
     /* Login Screen Related */
@@ -102,6 +120,7 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
     _sendMessage() {
         super.sendMessage();
+        this.setState({content: ''});
     }
 
     _onContentSizeChange(event) {
@@ -129,18 +148,19 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
         }
     };
 
+
     render() {
         return (
 
             <DismissKeyboardView>
 
+
                 {!this.state.joined && <LoginScreen
                     userCredentials={this.state.userCredentials}
                     onPasswordChange={this._onPasswordChange}
                     onUserIdChange={this._onUserIdChange}
-                    onRegister={this.onRegister}
+                    onRegister={this.register}
                 />}
-                {console.log(this.state.userCredentials)}
 
                 {this.state.joined && (<View style={styles.container}>
 
@@ -189,6 +209,8 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
                     <Toast isVisible={this.state.isToastVisible} onTimeout={this.hideToast} content="Copied!"/>
 
                 </View>)}
+
+                {this.state.error.enabled && <View style={styles.errorView}><Text style={styles.errorViewText}>{this.state.error.message}</Text></View> }
             </DismissKeyboardView>
         );
     }
