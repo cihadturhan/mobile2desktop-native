@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Clipboard, StyleSheet, View, Text, Easing} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {ListItem} from 'react-native-elements';
@@ -38,18 +39,20 @@ class messageListItem extends Component {
                 style={[styles.animatable, this.props.style? this.props.style : {}]}
                 duration={300}>
                 {<ListItem
-
-            onPress={this._setClipboardContent.bind(this)}
-            hideChevron={message.type != constants.TYPES.TEXT}
-            style={styles.button1}
-            rightIcon={{name: 'content-copy'}}
-            key={message.Uuid}
-            title={message.content}
-            subtitle={
-                <View style={styles.subtitleView}>
-                    <Text style={styles.ratingText}>{moment(message.createdAt).fromNow(true)}</Text>
-                </View>
-            }
+                    onPress={this._setClipboardContent.bind(this)}
+                    hideChevron={message.type != constants.TYPES.TEXT}
+                    style={styles.button1}
+                    rightIcon={{name: 'content-copy'}}
+                    key={message.Uuid}
+                    title={message.content}
+                    leftIcon={
+                        <View style={styles.leftIcon}></View>
+                    }
+                    subtitle={
+                        <View style={styles.subtitleView}>
+                            <Text style={styles.ratingText}>{moment(message.createdAt).fromNow(true)}</Text>
+                        </View>
+                    }
         />}</Animatable.View>);
     }
 }
@@ -63,6 +66,14 @@ messageListItem.propTypes = {
 export default messageListItem;
 
 const styles = StyleSheet.create({
+    leftIcon:{
+        width: 10,
+        height: 10,
+        backgroundColor: 'transparent',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: 'red',
+    },
     subtitleView: {
         flexDirection: 'row',
         paddingLeft: 10,

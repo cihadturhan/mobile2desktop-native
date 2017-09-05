@@ -22,7 +22,7 @@ export default class Mobile2DesktopSocketHandler extends Component {
             registered: false,
             status: 'Disconnected',
             resource: icon,
-            content: 'Type Your First Message',
+            content: '',
             messages: [],
             devices: {},
         };

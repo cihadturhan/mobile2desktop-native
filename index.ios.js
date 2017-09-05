@@ -14,13 +14,18 @@ import * as UserInfo from './models/userInfo';
 import Mobile2DesktopSocketHandler from './Mobile2DesktopSocketHandler';
 
 import {Button} from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styles from './styles/global';
+import colors from './styles/colors';
 
 import LoginScreen from './components/loginScreen';
 import MessageList from './components/messageList';
-import DeviceList from './components/deviceList';
+import Footer from './components/footer';
 import Toast from './components/toast';
+import CustomTextArea from './components/textArea';
+import CustomButton from './components/button';
+import SmallHeader from './components/smallHeader';
 import DismissableView from './components/dismissableView';
 
 const DismissKeyboardView = DismissableView(View);
@@ -34,18 +39,17 @@ const deviceName = DeviceInfo.getBrand() + '/' + DeviceInfo.getDeviceId() + '/' 
 const url = 'mobile2desktop.herokuapp.com';
 //const url = 'localhost:3000';
 
-
 export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
     constructor(props) {
         super(props);
-        UserInfo.remove(UserInfo.USER_TOKEN);
-        UserInfo.remove(UserInfo.USER_ID);
+        /*UserInfo.remove(UserInfo.USER_TOKEN);
+        UserInfo.remove(UserInfo.USER_ID);*/
 
         this.state.sessionCredentials = {
             deviceUuid,
             deviceName,
-            UserToken: UserInfo.get(UserInfo.USER_TOKEN) || '',
+            UserToken: UserInfo.get(UserInfo.USER_TOKEN) || ''
         };
 
         this.io = SocketIOClient(url, {jsonp: false});
@@ -53,21 +57,41 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
         this.state.userCredentials = {
             UserId: UserInfo.get(UserInfo.USER_ID) || '',
             password: '',
-            fieldsValid: false,
+            fieldsValid: false
         };
 
         this.state.contentHeight = 0;
         this.state.isToastVisible = false;
         this.state.error = {};
 
-        this._onPasswordChange = this._onPasswordChange.bind(this);
-        this._onUserIdChange = this._onUserIdChange.bind(this);
-        this._onContentSizeChange = this._onContentSizeChange.bind(this);
-        this._getClipboardContent = this._getClipboardContent.bind(this);
-        this._onCopy = this._onCopy.bind(this);
-        this.checkFieldsValid = this.checkFieldsValid.bind(this);
-        this.register = this.register.bind(this);
+        this._onPasswordChange = this
+            ._onPasswordChange
+            .bind(this);
+        this._onUserIdChange = this
+            ._onUserIdChange
+            .bind(this);
+        this._getClipboardContent = this
+            ._getClipboardContent
+            .bind(this);
+        this._onCopy = this
+            ._onCopy
+            .bind(this);
+        this.checkFieldsValid = this
+            .checkFieldsValid
+            .bind(this);
+        this.register = this
+            .register
+            .bind(this);
+        this._sendMessage = this
+            ._sendMessage
+            .bind(this);
     }
+
+    componentDidMount = () => {
+        super.componentDidMount();
+        this._getClipboardContent();
+    }
+    
 
     /* Overrides */
 
@@ -82,7 +106,7 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
         UserInfo.remove(UserInfo.USER_TOKEN);
     }
 
-    showError(errorMessage){
+    showError(errorMessage) {
         let error = {
             enabled: true,
             message: errorMessage
@@ -90,7 +114,7 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
         this.setState({error});
 
-        setTimeout(()=> {
+        setTimeout(() => {
             this.setState({error: {}})
         }, 3000)
     }
@@ -99,13 +123,17 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
     _onUserIdChange(UserId) {
         var userCredentials = Object.assign({}, this.state.userCredentials, {UserId});
-        this.setState({userCredentials}, this.checkFieldsValid);
+        this.setState({
+            userCredentials
+        }, this.checkFieldsValid);
         UserInfo.save(UserInfo.USER_ID, UserId)
     }
 
     _onPasswordChange(password) {
         var userCredentials = Object.assign({}, this.state.userCredentials, {password});
-        this.setState({userCredentials}, this.checkFieldsValid);
+        this.setState({
+            userCredentials
+        }, this.checkFieldsValid);
     }
 
     checkFieldsValid() {
@@ -123,19 +151,11 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
         this.setState({content: ''});
     }
 
-    _onContentSizeChange(event) {
-        this.setState({contentHeight: event.nativeEvent.contentSize.height + 29});
-    }
-
     _onCopy() {
-        this.setState({
-            isToastVisible: true
-        });
+        this.setState({isToastVisible: true});
 
-        setTimeout(()=> {
-            this.setState({
-                isToastVisible: false
-            });
+        setTimeout(() => {
+            this.setState({isToastVisible: false});
         }, 1000)
     }
 
@@ -148,69 +168,75 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
         }
     };
 
-
     render() {
         return (
 
             <DismissKeyboardView>
 
-
                 {!this.state.joined && <LoginScreen
                     userCredentials={this.state.userCredentials}
                     onPasswordChange={this._onPasswordChange}
                     onUserIdChange={this._onUserIdChange}
-                    onRegister={this.register}
-                />}
+                    onRegister={this.register}/>}
 
-                {this.state.joined && (<View style={styles.container}>
+                {this.state.joined && (
+                    <View style={styles.container}>
 
-                    <View style={styles.navigationBar}>
-                        <View><Image source={this.state.resource}/></View>
-                        <View style={styles.title}><Text
-                            style={[styles.titleText, styles.textDefault]}>{this.state.status}</Text></View>
-                        <DeviceList devices={this.state.devices}/>
+                        <LinearGradient style={styles.textInputContainer} 
+                        colors={[colors.ceruleanBlue, colors.dodgerBlue]}>
+
+                            {true
+                                ? <CustomTextArea
+                                        value={this.state.content}
+                                        placeholder="Paste your awesome text"
+                                        onChangeText={(content) => this.setState({content})}/>
+                                : <View>
+                                    <View><Image source={this.state.resource}/></View>
+                                    <View style={styles.title}>
+                                        <Text style={[styles.titleText, styles.textDefault]}>{this.state.status}</Text>
+                                    </View>
+                                </View>}
+
+                        </LinearGradient>
+
+                        <View style={styles.sendContainer}>
+                            {false && <Button
+                                onPress={this._getClipboardContent}
+                                icon={{
+                                name: 'content-paste'
+                            }}
+                                disabled={!this.state.joined}
+                                title='Paste'
+                                buttonStyle={styles.buttonPaste}/>}
+
+                            <CustomButton
+                                onPress={this._sendMessage}
+                                disabled={!this.state.joined}
+                                hasArrow={true}
+                                title='Send to Devices'/>
+
+                                <SmallHeader/>
+                        </View>                       
+
+                        <ScrollView
+                            style={styles.scrollView}
+                            >
+                            <MessageList onCopy={this._onCopy} messages={this.state.messages}/>
+                        </ScrollView>
+
+                        {/* <Footer devices={this.state.devices}/> */}
+
+                        <Toast
+                            isVisible={this.state.isToastVisible}
+                            onTimeout={this.hideToast}
+                            content="Copied!"/>
+
                     </View>
+                )}
 
-                    <Text style={styles.smallHeader}>Copied Text</Text>
-                    <View style={styles.textInputContainer}>
-                        <TextInput
-                            style={[styles.textInput, {height: Math.max(35, this.state.contentHeight)}]}
-                            onChangeText={(content) => this.setState({content})}
-                            value={this.state.content}
-                            multiline={true}
-                            numberOfLines={14}
-                            onContentSizeChange={this._onContentSizeChange}
-                            placeholder="Paste your awesome text"
-                            returnKeyType="done"
-                        /></View>
-
-                    <View style={styles.sendContainer}>
-                        {false && <Button
-                            onPress={this._getClipboardContent}
-                            icon={{name: 'content-paste'}}
-                            disabled={!this.state.joined}
-                            title='Paste'
-                            buttonStyle={styles.buttonPaste}/>}
-
-                        <Button
-                            onPress={this._sendMessage.bind(this)}
-                            icon={{name: 'send'}}
-                            disabled={!this.state.joined}
-                            title='Send Message'
-                            buttonStyle={styles.buttonSend}/>
-                    </View>
-
-                    <Text style={styles.smallHeader}>Your History</Text>
-
-                    <ScrollView style={styles.scrollView} contentContainerStyle={{flex: 0}}>
-                        <MessageList onCopy={this._onCopy} messages={this.state.messages}/>
-                    </ScrollView>
-
-                    <Toast isVisible={this.state.isToastVisible} onTimeout={this.hideToast} content="Copied!"/>
-
-                </View>)}
-
-                {this.state.error.enabled && <View style={styles.errorView}><Text style={styles.errorViewText}>{this.state.error.message}</Text></View> }
+                {this.state.error.enabled && <View style={styles.errorView}>
+                    <Text style={styles.errorViewText}>{this.state.error.message}</Text>
+                </View>}
             </DismissKeyboardView>
         );
     }

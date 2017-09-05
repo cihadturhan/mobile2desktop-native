@@ -1,7 +1,11 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {StyleSheet, View, TextInput, Text, ScrollView} from 'react-native';
+import CustomTextInput from './textInput';
+import CustomButton from './button';
 import {Button} from 'react-native-elements';
 import styles from '../styles/global';
+import colors from '../styles/colors';
 
 
 const LoginScreen = (props) => {
@@ -19,32 +23,29 @@ const LoginScreen = (props) => {
             >
 
                 <View style={[styles.textInputContainer, overrides.textInputContainer]}>
-                    <TextInput
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        style={[styles.textInput, overrides.textInput]}
+                    <Text style={[styles.label]}>Email</Text>
+                    <CustomTextInput
                         onChangeText={props.onUserIdChange}
                         value={props.userCredentials.UserId}
-                        placeholder="Email address"
+                        placeholder="name@mail.com"
                         keyboardType="email-address"
-                        returnKeyType="next"
                     />
 
-                    <TextInput
-                        style={[styles.textInput, overrides.textInput]}
+                    <Text style={[styles.label]}>Password</Text>
+                    <CustomTextInput
                         onChangeText={props.onPasswordChange}
                         value={props.userCredentials.password}
                         secureTextEntry={true}
-                        placeholder="Password"
-                        returnKeyType="done"
+                        placeholder="*******"
                     />
 
-                    <Button
+                    <CustomButton
                         onPress={props.onRegister}
-                        icon={{name: 'check'}}
                         disabled={!props.userCredentials.fieldsValid}
-                        title='Register or Login'
-                        buttonStyle={[styles.buttonSend, overrides.buttonSend]}/>
+                        hasArrow={false}
+                        title='Register or Login'/>
+
+                    <Text style={overrides.infoText}>Make sure you entered correct e-mail. We will send you an e-mail if you forget password.</Text>
                 </View>
             </ScrollView>
         </View>);
@@ -60,32 +61,25 @@ LoginScreen.propTypes = {
 };
 
 const overrides = StyleSheet.create({
-    textInput: {
-        padding: 10,
-        fontSize: 20,
-        backgroundColor: 'hsla(0, 0%, 100%, 0.8)',
-        marginBottom: 10,
-        borderRadius: 5,
-        lineHeight: 20*1.6,
-        minHeight: 50
+    infoText:{
+        fontSize: 12,
+        textAlign: "center",
+        color: colors.marineBlue,
     },
     scrollView:{
         flex: 1,
         flexDirection: 'column',
     },
     scrollViewContent:{
-        alignItems: 'stretch',
-        justifyContent: 'center',
         flex: 1,
         padding: 10,
-
     },
     textInputContainer: {
         backgroundColor: 'transparent',
         borderRadius: 10,
         paddingLeft: 16,
         paddingRight: 16,
-        paddingTop: 32,
+        paddingTop: 24,
         paddingBottom: 32,
 
     },

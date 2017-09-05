@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import colors from './colors';
 
 export default styles = StyleSheet.create({
     title: {
@@ -8,7 +9,8 @@ export default styles = StyleSheet.create({
     titleText: {
         fontSize: 15,
     },
-    scrollView: {},
+    scrollView: {
+    },
     container: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -16,16 +18,8 @@ export default styles = StyleSheet.create({
         height: '100%'
     },
     textInputContainer: {
-        minHeight: 20,
+        height: 230
     },
-    textInput: {
-        fontSize: 24,
-        padding: 10,
-        color: 'rgb(0,53,102)',
-        backgroundColor: 'white',
-        minHeight: 40
-    },
-
     sendContainer: {
         flexDirection: 'column',
         alignItems: 'stretch'
@@ -51,28 +45,24 @@ export default styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 1.4 * 15
     },
-    buttonSend: {
-        backgroundColor: 'rgb(36,121,227)',
-        marginLeft: 0,
-        marginRight: 0,
-        height: 53
-    },
-    smallHeader: {
-        lineHeight: 30,
-        marginBottom: 0,
-        fontSize: 12,
-        textAlign: 'center',
-
-    },
     navigationBar: {
-        backgroundColor: 'rgb(244,244,244)',
+        backgroundColor: '#F2F8FC',
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row',
-        height: 65,
+        height: 80,
         paddingTop: 20,
-        paddingLeft: 10
+        paddingLeft: 10,
+        borderColor: '#DAE7F2',
+        borderBottomWidth: 1,        
     },
+    label:{
+        fontSize: 14,
+        lineHeight: 21,
+        color: colors.marineBlue,
+        fontFamily: "TitilliumWeb-Regular",
+    },
+
     instructions: {
         textAlign: 'center',
         color: '#333333',

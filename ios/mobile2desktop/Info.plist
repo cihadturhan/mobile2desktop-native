@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -49,6 +49,13 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>TitilliumWeb-Black.ttf</string>
+		<string>TitilliumWeb-Bold.ttf</string>
+		<string>TitilliumWeb-ExtraLight.ttf</string>
+		<string>TitilliumWeb-Italic.ttf</string>
+		<string>TitilliumWeb-Light.ttf</string>
+		<string>TitilliumWeb-Regular.ttf</string>
+		<string>TitilliumWeb-SemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
