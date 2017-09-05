@@ -49,7 +49,9 @@ export default messageList;
 
 const styles = StyleSheet.create({
     messages: {
-        marginTop: 0
+        marginTop: 0,
+        flexGrow: 1,
+        backgroundColor: 'transparent'
     },
     bg1: {
         backgroundColor: 'rgb(248,248,248)'

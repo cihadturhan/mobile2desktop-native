@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Clipboard, StyleSheet, View, Text, Easing} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {ListItem} from 'react-native-elements';
+import colors from '../styles/colors';
+
 const AnimatedListItem = Animatable.createAnimatableComponent(ListItem);
 
 const slideDown = {
@@ -15,6 +17,12 @@ const slideDown = {
         opacity: 1,
     },
 };
+
+const leftIconColors = [
+    colors.azul,
+    colors.fadedRed,
+    colors.greenBlue
+]
 
 import moment from 'moment';
 import constants from 'paste-n-sync-constants';
@@ -41,12 +49,12 @@ class messageListItem extends Component {
                 {<ListItem
                     onPress={this._setClipboardContent.bind(this)}
                     hideChevron={message.type != constants.TYPES.TEXT}
-                    style={styles.button1}
+                    style={styles.listItem}
                     rightIcon={{name: 'content-copy'}}
                     key={message.Uuid}
                     title={message.content}
                     leftIcon={
-                        <View style={styles.leftIcon}></View>
+                        <View style={[styles.leftIcon, {borderColor: leftIconColors[this.props.index % leftIconColors.length]}]}></View>
                     }
                     subtitle={
                         <View style={styles.subtitleView}>
@@ -69,10 +77,12 @@ const styles = StyleSheet.create({
     leftIcon:{
         width: 10,
         height: 10,
+        marginRight: 10,
         backgroundColor: 'transparent',
         borderRadius: 5,
         borderWidth: 1,
         borderColor: 'red',
+        alignSelf: 'center',
     },
     subtitleView: {
         flexDirection: 'row',
@@ -82,8 +92,11 @@ const styles = StyleSheet.create({
     animatable:{
         marginTop: 0,
     },
-    button1:{
-        height: 10
+    listItem:{
+        paddingTop: 15,
+        paddingBottom: 15,
+        borderColor: colors.lightBlueGrey,
+        borderBottomWidth: 1,
     },
     ratingText: {
         paddingLeft: 10,

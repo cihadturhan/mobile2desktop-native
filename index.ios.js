@@ -220,11 +220,13 @@ export default class mobile2desktop extends Mobile2DesktopSocketHandler {
 
                         <ScrollView
                             style={styles.scrollView}
-                            >
+                            contentContainerStyle={{
+                                flexGrow: 1
+                        }}>
                             <MessageList onCopy={this._onCopy} messages={this.state.messages}/>
                         </ScrollView>
 
-                        {/* <Footer devices={this.state.devices}/> */}
+                        <Footer devices={this.state.devices}/>
 
                         <Toast
                             isVisible={this.state.isToastVisible}

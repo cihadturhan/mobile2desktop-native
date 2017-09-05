@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     deviceList: {
         flex:1,
         flexDirection: 'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'center'
     }
 });
